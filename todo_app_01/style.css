@@ -30,20 +30,29 @@ html, body {
 .form-container{
 
     border: 2px solid greenyellow;
-    height: 10vh;
+    height: 20vh;
     margin: 2vh auto;
 }
 
-.todos-container{
+.form-container form{
+
+    border: 1px dotted orange;
+    width: 80%;
+}
+
+form .input-divs {
+
+    background-color: yellow;
+    width: 80%;
+}
+
+.todos-container {
 
     border: 3px solid red;
     min-height: 30vh;
     margin: 2vh auto;
 }
 
-.todos-labelling{
-
-}
 
 .todos{
 
@@ -52,5 +61,5 @@ html, body {
 .footer-container{
 
     background-color: gray;
-    height: 20vh;
+    height: 10vh;
 }

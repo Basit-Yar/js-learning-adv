@@ -1,0 +1,25 @@
+table {
+    border: 2px solid rgb(0, 0, 0);
+}
+
+thead {
+
+}
+
+tbody {
+
+}
+
+th, td {
+
+    border: 1px solid purple;
+    padding: .75vh 1.5vw;
+}
+
+th {
+    color: red;
+}
+
+td {
+    color: blue;
+}

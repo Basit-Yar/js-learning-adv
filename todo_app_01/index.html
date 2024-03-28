@@ -6,6 +6,7 @@
     <title>To-Do App</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="table.css">
 </head>
 <body>
     <div class="main-container">
@@ -13,21 +14,52 @@
             <h1>ToDo List</h1>
         </div>
 
-        <div class="form-container">
+        <div class="form-container center">
 
+            <form>
+                <div class="input-divs">
+                    <input type="text" name="task" id="task" placeholder="To do...">
+                </div>
+                <div class="input-divs">    
+                    <input type="datetime-local">
+                    <input type="submit" value="Add Todo">
+                </div>
+            </form>
         </div>
 
         <div class="todos-container">
-            <div class="todos-labelling">
-
-            </div>
             <div class="todos">
-
+                <table class="todo-table">
+                    <thead>
+                        <tr>
+                            <th>S.no</th>
+                            <th>Tasks</th>
+                            <th>Created At</th>
+                            <th>Should Finshed At</th>
+                            <th>Modify</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>S.no</td>
+                            <td>Tasks</td>
+                            <td>Created At</td>
+                            <td>Should Finshed At</td>
+                            <td><button>Edit</button></td>
+                            <td><button>Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="footer-container">
-
+            <h1>Footer</h1>
+            <h3>Created By me..</h3>
         </div>
     </div>
+
+    <!-- linking the scripting files -->
+    <script src="script.js"></script>
 </body>
 </html>
