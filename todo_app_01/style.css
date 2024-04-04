@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -42,7 +42,7 @@ html, body {
 
 form .input-divs {
 
-    background-color: yellow;
+    /* background-color: yellow; */
     width: 80%;
 }
 
@@ -56,6 +56,29 @@ form .input-divs {
 
 .todos{
 
+}
+
+#table-body button {
+    width: 6vw;
+    padding: .75vh 0;
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    cursor: pointer;
+    transition:1s;
+}
+#table-body button:hover{
+    font-size: 1.25rem;
+}
+
+.edit-btn {
+
+    border: 2px solid green;
+    color: green;
+}
+
+.delete-btn {
+
+    border: 2px solid red;
+    color: red;
 }
 
 .footer-container{
