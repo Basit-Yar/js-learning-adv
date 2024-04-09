@@ -23,9 +23,9 @@ const clearDataUtil = () => {
 }
 
 todoStorageArray = [];
+
 retrieveLocalStorageTodoObjs = JSON.parse(localStorage.getItem("todos"));
 if (retrieveLocalStorageTodoObjs != null) {
-
     todoStorageArray = retrieveLocalStorageTodoObjs;
 }
 
@@ -48,9 +48,9 @@ const addNewTodoTask = (event) => {
 const displayAllTodoTask = () => {
 
     tableBody.innerHTML = ""
-    todoStorageArray.forEach(todoElement => {
+    todoStorageArray.forEach((todoElement, index) => {
     tableBody.innerHTML +=  `<tr>
-                                <td>S.no</td>
+                                <td class= "s-no">${index + 1}</td>
                                 <td class="todo-value">${todoElement.task}</td>
                                 <td>${todoElement.createdAt}</td>
                                 <td class="todo-due-time">${todoElement.dueTime}</td>
@@ -61,14 +61,24 @@ const displayAllTodoTask = () => {
     
 }
 
-const editTodoTask = () => {
-
+const editTodoTask = (e) => {
+    if (e.target.innerHTML === "Edit") {
+        alert("You are going to edit this task!");
+    }
 }
 
-const deleteTodoTask = () => {
-
+const deleteTodoTask = (e) => {
+    if (e.target.innerHTML === "Delete") {
+        let indexNum = e.target.closest("tr").querySelector(".s-no").innerHTML;
+        alert(`You are going to delete this task! Sno. ${indexNum}`);
+        todoStorageArray.splice(indexNum - 1, 1);
+        localStorage.setItem("todos", JSON.stringify(todoStorageArray));
+        displayAllTodoTask()
+    }
 }
 
 
 addBtn.addEventListener("click", addNewTodoTask);
+tableBody.addEventListener("click", editTodoTask);
+tableBody.addEventListener("click", deleteTodoTask);
 displayAllTodoTask()
