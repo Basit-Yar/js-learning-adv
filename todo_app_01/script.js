@@ -20,41 +20,68 @@ formattedDateTime = (currentDate) => {
 
 
 dataStorageArray = [];
+toEditTodoEventTarget = null;
 
 addBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    todoValue = todo.value
-    currentNow = formattedDateTime(new Date());
     todoValue = todo.value;
+    todo.value = "";
+    currentNow = formattedDateTime(new Date());
     finishedTimeValue = finishedTime.value;
+    finishedTime.value = "";
 
     elem = `<tr>
                 <td>S.no</td>
-                <td>${todoValue}</td>
+                <td class="todo-value">${todoValue}</td>
                 <td>${currentNow}</td>
-                <td>${finishedTimeValue}</td>
+                <td class="todo-due-time">${finishedTimeValue}</td>
                 <td><button class="edit-btn">Edit</button></td>
                 <td><button class="delete-btn">Delete</button></td>
             </tr>`
+
+    if (addBtn.value === "Edit") {
+        updatedTodoValue = todoValue;
+        console.log(updatedTodoValue)
+        toEditTodoEventTarget.closest("tr").querySelector(".todo-value").innerHTML = updatedTodoValue;
+        
+        addBtn.value = "Add Todo"
+    }
 
     dataStorageArray.push(elem);
     // console.log(dataStorageArray)
 
     tableBody.innerHTML = "";
-    for(i=0; i<dataStorageArray.length; i++){
+    for (i = 0; i < dataStorageArray.length; i++) {
         tableBody.innerHTML += dataStorageArray[i]
     }
 })
-// const deleteBtn = document.querySelector(".delete-btn")
+
 tableBody.addEventListener("click", (event) => {
-    console.log(event.target.parentElement.parentElement)
-    if(event.target.innerHTML === "Delete"){
+    // console.log(event.target.parentElement.parentElement)
+    if (event.target.innerHTML === "Delete") {
         let isRemove = confirm("Do you want to delete this to-do task!")
-        if(isRemove){
+        if (isRemove) {
 
             event.target.parentElement.parentElement.remove()
         }
         // console.log("Yes this is delete btn now you can delete")
+    }
+
+    if (event.target.innerHTML === "Edit") {
+        const closestTableRow = event.target.closest("tr")
+        toEditToDoValue = closestTableRow.querySelector(".todo-value").innerHTML;
+        toEditDueTime = closestTableRow.querySelector(".todo-due-time").innerHTML
+        // isConfirmed = confirm("Do you want to see the data!");
+        // if (isConfirmed) {
+
+        // }
+        addBtn.value = "Edit";
+        todo.value = toEditToDoValue;
+        finishedTime.value = toEditDueTime;
+
+        toEditTodoEventTarget = event.target;
+        console.log(`ToDo : ${toEditToDoValue} and its due time is : ${toEditDueTime}`)
+
     }
 })
 

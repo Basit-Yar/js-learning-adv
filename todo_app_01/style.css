@@ -7,6 +7,7 @@
 html, body {
     width: 100%;
     height: 100%;
+    background-color: azure;
 }
 
 .main-container{
@@ -29,21 +30,53 @@ html, body {
 
 .form-container{
 
-    border: 2px solid greenyellow;
+    /* border: 2px solid greenyellow; */
     height: 20vh;
     margin: 2vh auto;
 }
 
 .form-container form{
-
-    border: 1px dotted orange;
-    width: 80%;
+    width: 75%;
+    border-left: 4px solid black;
+    padding : 4px;
 }
 
 form .input-divs {
 
     /* background-color: yellow; */
-    width: 80%;
+    width: 100%;
+    display: flex;
+}
+
+.input-divs input {
+    padding: 1vh 1vw;
+    font-size: 3vh;
+    background-color: black;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+}
+#task {
+    width: 100%;
+    margin-bottom: 3px;
+    font-size: 3.3vh;
+}
+#f-time {
+    width: 100%;
+    margin-right: 6px;
+    margin-top: 3px;
+}
+#add-todo {
+    width: 25%;
+    border: 2px solid black;
+    margin-top: 3px;
+}
+#task::placeholder{
+    color: rgba(255, 255, 255, .5);
+}
+#f-time::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Inverts the color of the icon */
 }
 
 .todos-container {
@@ -54,8 +87,8 @@ form .input-divs {
 }
 
 
-.todos{
-
+.todo-table {
+    width: 80%;
 }
 
 #table-body button {
@@ -66,7 +99,7 @@ form .input-divs {
     transition:1s;
 }
 #table-body button:hover{
-    font-size: 1.25rem;
+    background-color: rgb(201, 201, 238);
 }
 
 .edit-btn {

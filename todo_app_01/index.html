@@ -11,14 +11,14 @@
 <body>
     <div class="main-container">
         <div class="header center">
-            <h1>ToDo List</h1>
+            <h1>Your ToDo List</h1>
         </div>
 
         <div class="form-container center">
 
             <form>
                 <div class="input-divs">
-                    <input type="text" name="task" id="task" placeholder="To do...">
+                    <input type="text" name="task" id="task" placeholder="To do..." autocomplete="off">
                 </div>
                 <div class="input-divs">    
                     <input type="datetime-local" id="f-time">
@@ -27,15 +27,15 @@
             </form>
         </div>
 
-        <div class="todos-container">
-            <div class="todos">
+        <div class="todos-container center">
+            <!-- <div class="todos"> -->
                 <table class="todo-table">
                     <thead>
                         <tr>
                             <th>S.no</th>
                             <th>Tasks</th>
                             <th>Created At</th>
-                            <th>Should Finshed At</th>
+                            <th>Due</th>
                             <th>Modify</th>
                             <th>Delete</th>
                         </tr>
@@ -51,7 +51,7 @@
                         </tr> -->
                     </tbody>
                 </table>
-            </div>
+            <!-- </div> -->
         </div>
         <div class="footer-container">
             <h1>Footer</h1>
@@ -60,6 +60,8 @@
     </div>
 
     <!-- linking the scripting files -->
-    <script src="script.js"></script>
+    
+    <!-- <script src="script.js"></script> -->
+    <script src="newScript.js"></script>
 </body>
 </html>
