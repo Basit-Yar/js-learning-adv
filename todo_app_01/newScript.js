@@ -1,7 +1,11 @@
 const todo = document.querySelector("#task");
-const dueTime = document.querySelector("#f-time")
+const dueTime = document.querySelector("#f-time");
 const addBtn = document.getElementById("add-todo");
 const tableBody = document.querySelector("#table-body")
+
+const addBtnDisplayValue = addBtn.value;
+let editIndexNum = null;
+let taskCreationRealTime;
 
 formattedDateTime = (currentDate) => {
 
@@ -32,15 +36,25 @@ if (retrieveLocalStorageTodoObjs != null) {
 const addNewTodoTask = (event) => {
     event.preventDefault();
     let currentTime = formattedDateTime(new Date());
-
+    
     inputtedTaskObj = {
-        task : todo.value,
-        dueTime : dueTime.value,
-        createdAt : currentTime
+        task: todo.value,
+        dueTime: dueTime.value,
+        createdAt: currentTime
     }
-    clearDataUtil();
 
-    todoStorageArray.push(inputtedTaskObj)
+    
+    if (editIndexNum != null) {
+        const updatedTaskObj = {...inputtedTaskObj, createdAt : taskCreationRealTime}
+
+        todoStorageArray.splice(editIndexNum, 1, updatedTaskObj);
+        editIndexNum = null;
+        addBtn.value = addBtnDisplayValue;
+    }
+    else
+        todoStorageArray.push(inputtedTaskObj)
+
+    clearDataUtil();
     localStorage.setItem("todos", JSON.stringify(todoStorageArray));
     displayAllTodoTask()
 }
@@ -49,7 +63,7 @@ const displayAllTodoTask = () => {
 
     tableBody.innerHTML = ""
     todoStorageArray.forEach((todoElement, index) => {
-    tableBody.innerHTML +=  `<tr>
+        tableBody.innerHTML += `<tr>
                                 <td class= "s-no">${index + 1}</td>
                                 <td class="todo-value">${todoElement.task}</td>
                                 <td>${todoElement.createdAt}</td>
@@ -57,23 +71,41 @@ const displayAllTodoTask = () => {
                                 <td><button class="edit-btn">Edit</button></td>
                                 <td><button class="delete-btn">Delete</button></td>
                             </tr>`
-});
-    
+    });
+
 }
 
 const editTodoTask = (e) => {
-    if (e.target.innerHTML === "Edit") {
-        alert("You are going to edit this task!");
+    let isConfirmed;
+    if (e.target.innerHTML === "Edit")
+        isConfirmed = confirm("Do you want to edit task?");
+
+    if (isConfirmed) {
+        let selectedRow = e.target.closest("tr");
+        let indexNum = selectedRow.querySelector(".s-no").innerHTML -1;
+        // let task = selectedRow.querySelector(".todo-value").innerHTML;
+        let task = todoStorageArray[indexNum].task;
+        // let dueAt = selectedRow.querySelector(".todo-due-time").innerHTML;
+        let dueAt = todoStorageArray[indexNum].dueTime;
+        taskCreationRealTime = todoStorageArray[indexNum].createdAt;
+
+        todo.value = task;
+        dueTime.value = dueAt;
+
+        editIndexNum = indexNum;
+        addBtn.value = "Edit Todo"
     }
 }
 
 const deleteTodoTask = (e) => {
     if (e.target.innerHTML === "Delete") {
         let indexNum = e.target.closest("tr").querySelector(".s-no").innerHTML;
-        alert(`You are going to delete this task! Sno. ${indexNum}`);
-        todoStorageArray.splice(indexNum - 1, 1);
-        localStorage.setItem("todos", JSON.stringify(todoStorageArray));
-        displayAllTodoTask()
+        const isConfirmed = confirm(`You are going to delete this task! Sno. ${indexNum}\nDo you want to delete this task?`);
+        if (isConfirmed){
+            todoStorageArray.splice(indexNum - 1, 1);
+            localStorage.setItem("todos", JSON.stringify(todoStorageArray));
+            displayAllTodoTask()
+        }
     }
 }
 
@@ -81,4 +113,4 @@ const deleteTodoTask = (e) => {
 addBtn.addEventListener("click", addNewTodoTask);
 tableBody.addEventListener("click", editTodoTask);
 tableBody.addEventListener("click", deleteTodoTask);
-displayAllTodoTask()
+displayAllTodoTask();
