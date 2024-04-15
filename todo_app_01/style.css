@@ -22,7 +22,7 @@ html, body {
 }
 
 .header{
-    border: 1px solid darkblue;
+    /* border: 1px solid darkblue; */
     width: 60vw;
     /* height:10vh; */
     margin: 2vh auto;
@@ -38,6 +38,7 @@ html, body {
 .form-container form{
     width: 75%;
     border-left: 4px solid black;
+    /* border-right: 4px solid black; */
     padding : 4px;
 }
 
@@ -69,8 +70,27 @@ form .input-divs {
 }
 #add-todo {
     width: 25%;
-    border: 2px solid black;
+    margin-right: 6px;
     margin-top: 3px;
+}
+#add-todo:hover {
+    transition: 1s;
+    background-color: blue;
+}
+
+#delete-all-todo {
+    width: 25%;
+    margin-top: 3px;
+}
+#delete-all-todo:hover {
+    transition: .5s;
+    background-color: red;
+}
+#search {
+    margin-top: 6px;
+    margin-left: auto;
+    width: 50%;
+    font-size: 3.3vh;
 }
 #task::placeholder{
     color: rgba(255, 255, 255, .5);
@@ -81,14 +101,14 @@ form .input-divs {
 
 .todos-container {
 
-    border: 3px solid red;
+    /* border: 3px solid red; */
     min-height: 30vh;
-    margin: 2vh auto;
+    margin: 8vh auto 0 auto;
 }
 
 
 .todo-table {
-    width: 80%;
+    width: 75%;
 }
 
 #table-body button {
@@ -103,19 +123,16 @@ form .input-divs {
 }
 
 .edit-btn {
-
     border: 2px solid green;
     color: green;
 }
 
 .delete-btn {
-
     border: 2px solid red;
     color: red;
 }
 
 .footer-container{
-
     background-color: gray;
     height: 10vh;
 }
